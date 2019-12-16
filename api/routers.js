@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.use('/users', usersRouter);
 router.use('/register', registerRouter);
-// router.use('/login', loginRouter);
+router.use('/login', loginRouter);
 
 router.get('/', (req, res) => {
    res.status(200).json({ api: `it's running` });
