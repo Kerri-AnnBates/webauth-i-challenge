@@ -7,7 +7,7 @@ const loginRouter = require('../login/login-router');
 const router = express.Router();
 
 router.use('/users', usersRouter);
-// router.use('/register', registerRouter);
+router.use('/register', registerRouter);
 // router.use('/login', loginRouter);
 
 router.get('/', (req, res) => {
