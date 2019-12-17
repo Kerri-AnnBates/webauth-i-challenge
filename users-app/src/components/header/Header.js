@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+import { Link } from "react-router-dom";
+import { Container, Button } from 'reactstrap';
 
 function Header() {
    return (
@@ -7,7 +8,11 @@ function Header() {
          <header>
             <Container className="themed-container">
                <nav>
-                  
+                  <Link exact='true' to='/'>Home</Link>
+                  <Link to='/login'>Login</Link>
+                  <Link to='/users'>Users</Link>
+                  <Link to='/register'>Register</Link>
+                  {/* <Button>Logout</Button> */}
                </nav>
             </Container>
          </header>
