@@ -11,6 +11,8 @@ router.post('/', (req, res) => {
 
          // If user is in db and password matches, login.
          if (user && bcrypt.compareSync(userCreds.password, user.password)) {
+            // Save session
+            req.session.user = user;
             res.status(200).json({ message: `Welcome ${user.username}!` });
          } else {
             res.status(401).json({ message: 'You shall not pass!' });
@@ -20,5 +22,19 @@ router.post('/', (req, res) => {
          res.status(500).json(err);
       })
 });
+
+router.get('/logout', (req, res) => {
+   if (req.session) {
+      req.session.destroy(error => {
+         if (error) {
+            res.status(500).json({ message: 'problem logging out' });
+         } else {
+            res.status(200).json({ message: 'You are logged out' });
+         }
+      });
+   } else {
+      res.status(200).end({ message: 'you are already logged out!' });
+   }
+})
 
 module.exports = router;
