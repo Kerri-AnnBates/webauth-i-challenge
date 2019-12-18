@@ -1,8 +1,19 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Container, Button } from 'reactstrap';
+import axios from 'axios';
 
 function Header() {
+
+   function logOut() {
+      axios.get('http://localhost:5000/api/logout')
+         .then(res => {
+            console.log(res);
+         })
+         .catch(err => {
+            console.log("Log out", err);
+         })
+   }
    return (
       <div>
          <header>
@@ -12,7 +23,7 @@ function Header() {
                   <Link to='/login'>Login</Link>
                   <Link to='/users'>Users</Link>
                   <Link to='/register'>Register</Link>
-                  {/* <Button>Logout</Button> */}
+                  <Button onClick={logOut}>Logout</Button>
                </nav>
             </Container>
          </header>

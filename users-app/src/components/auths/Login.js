@@ -15,13 +15,18 @@ function Login() {
    function handleSubmit(e) {
       e.preventDefault();
 
-      axios.post('http://localhost:5000/api/login', input)
-         .then(res => {
-            console.log('Logged in', res);
-         })
-         .catch(err => {
-            console.log('Login error:', err);
-         })
+      if(input.username && input.password) {
+         axios.post('http://localhost:5000/api/login', input)
+            .then(res => {
+               console.log('Logged in', res);
+               setInput({ username: '', password: '' });
+            })
+            .catch(err => {
+               console.log('Login error:', err);
+            })
+      } else {
+         alert('Please enter username and password');
+      }
    }
 
    return (
